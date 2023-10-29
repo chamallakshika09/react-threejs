@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { store } from './store';
-import ThreeScene from 'components/ThreeScene';
+import ThreeScene from 'components/three-scene';
 
 function App() {
   return (

@@ -25,9 +25,6 @@ export const animate = (renderer, scene, camera, cube) => {
   function animation() {
     const frameId = requestAnimationFrame(animation);
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-
     renderer.render(scene, camera);
 
     return frameId;

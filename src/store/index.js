@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import transformSlice from './transform-slice';
+import cubeSlice from './cube-slice';
 
 export const store = configureStore({
   reducer: {
-    transform: transformSlice,
+    cube: cubeSlice,
   },
 });
