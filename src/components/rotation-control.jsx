@@ -9,20 +9,41 @@ const RotationControl = () => {
   const dispatch = useDispatch();
 
   const handleRotationChange = (axis) => (event, value) => {
-    dispatch(setRotation({ ...rotation, [axis]: value * (Math.PI / 180) }));
+    dispatch(setRotation({ ...rotation, [axis]: value }));
   };
 
   return (
     <Box>
       <Typography gutterBottom>Rotation</Typography>
       <Typography gutterBottom>X:</Typography>
-      <Slider value={rotation.x} min={0} max={360} step={1} onChange={handleRotationChange('x')} />
+      <Slider
+        value={rotation.x}
+        min={0}
+        max={360}
+        step={10}
+        onChange={handleRotationChange('x')}
+        valueLabelDisplay="auto"
+      />
 
       <Typography gutterBottom>Y:</Typography>
-      <Slider value={rotation.y} min={0} max={360} step={1} onChange={handleRotationChange('y')} />
+      <Slider
+        value={rotation.y}
+        min={0}
+        max={360}
+        step={10}
+        onChange={handleRotationChange('y')}
+        valueLabelDisplay="auto"
+      />
 
       <Typography gutterBottom>Z:</Typography>
-      <Slider value={rotation.z} min={0} max={360} step={1} onChange={handleRotationChange('z')} />
+      <Slider
+        value={rotation.z}
+        min={0}
+        max={360}
+        step={10}
+        onChange={handleRotationChange('z')}
+        valueLabelDisplay="auto"
+      />
     </Box>
   );
 };

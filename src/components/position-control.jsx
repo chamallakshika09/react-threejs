@@ -16,13 +16,34 @@ const PositionControl = () => {
     <Box>
       <Typography gutterBottom>Position</Typography>
       <Typography gutterBottom>X:</Typography>
-      <Slider value={position.x} step={0.1} min={-5} max={5} onChange={handlePositionChange('x')} />
+      <Slider
+        value={position.x}
+        step={0.1}
+        min={-5}
+        max={5}
+        onChange={handlePositionChange('x')}
+        valueLabelDisplay="auto"
+      />
 
       <Typography gutterBottom>Y:</Typography>
-      <Slider value={position.y} step={0.1} min={-5} max={5} onChange={handlePositionChange('y')} />
+      <Slider
+        value={position.y}
+        step={0.1}
+        min={-5}
+        max={5}
+        onChange={handlePositionChange('y')}
+        valueLabelDisplay="auto"
+      />
 
       <Typography gutterBottom>Z:</Typography>
-      <Slider value={position.z} step={0.1} min={-5} max={5} onChange={handlePositionChange('z')} />
+      <Slider
+        value={position.z}
+        step={0.1}
+        min={-5}
+        max={5}
+        onChange={handlePositionChange('z')}
+        valueLabelDisplay="auto"
+      />
     </Box>
   );
 };

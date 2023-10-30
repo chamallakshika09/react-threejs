@@ -16,13 +16,13 @@ const ScaleControl = () => {
     <Box>
       <Typography gutterBottom>Scale</Typography>
       <Typography gutterBottom>X:</Typography>
-      <Slider value={scale.x} step={0.1} min={0.5} max={3} onChange={handleScaleChange('x')} />
+      <Slider value={scale.x} step={0.1} min={0.5} max={3} onChange={handleScaleChange('x')} valueLabelDisplay="auto" />
 
       <Typography gutterBottom>Y:</Typography>
-      <Slider value={scale.y} step={0.1} min={0.5} max={3} onChange={handleScaleChange('y')} />
+      <Slider value={scale.y} step={0.1} min={0.5} max={3} onChange={handleScaleChange('y')} valueLabelDisplay="auto" />
 
       <Typography gutterBottom>Z:</Typography>
-      <Slider value={scale.z} step={0.1} min={0.5} max={3} onChange={handleScaleChange('z')} />
+      <Slider value={scale.z} step={0.1} min={0.5} max={3} onChange={handleScaleChange('z')} valueLabelDisplay="auto" />
     </Box>
   );
 };

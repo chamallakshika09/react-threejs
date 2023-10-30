@@ -21,42 +21,56 @@ const ThreeScene = () => {
 
   useEffect(() => {
     const scene = createScene();
-    const camera = createCamera();
+    const camera = createCamera(mountRef.current);
     const renderer = createRenderer(mountRef.current);
     const cube = createCube();
 
     scene.add(cube);
     cubeRef.current = cube;
 
+    if (cubeRef.current) {
+      cubeRef.current.rotation.x = rotation.x * (Math.PI / 180);
+      cubeRef.current.rotation.y = rotation.y * (Math.PI / 180);
+      cubeRef.current.rotation.z = rotation.z * (Math.PI / 180);
+
+      cubeRef.current.scale.set(scale.x, scale.y, scale.z);
+
+      cubeRef.current.position.set(position.x, position.y, position.z);
+      cubeRef.current.material.color.set(color);
+    }
+
     const animate = () => {
-      if (cubeRef.current) {
-        cubeRef.current.rotation.x = rotation.x;
-        cubeRef.current.rotation.y = rotation.y;
-        cubeRef.current.rotation.z = rotation.z;
-
-        cubeRef.current.scale.set(scale.x, scale.y, scale.z);
-
-        cubeRef.current.position.set(position.x, position.y, position.z);
-        cubeRef.current.material.color.set(color);
-      }
-
       renderer.render(scene, camera);
       frameIdRef.current = requestAnimationFrame(animate);
     };
 
     animate();
 
+    const handleResize = () => {
+      const width = mountRef.current.clientWidth;
+      const height = mountRef.current.clientHeight;
+
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
       mountRef.current.removeChild(renderer.domElement);
       cancelAnimationFrame(frameIdRef.current);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   useEffect(() => {
     if (cubeRef.current) {
-      cubeRef.current.rotation.x = rotation.x;
-      cubeRef.current.rotation.y = rotation.y;
-      cubeRef.current.rotation.z = rotation.z;
+      cubeRef.current.rotation.x = rotation.x * (Math.PI / 180);
+      cubeRef.current.rotation.y = rotation.y * (Math.PI / 180);
+      cubeRef.current.rotation.z = rotation.z * (Math.PI / 180);
 
       cubeRef.current.scale.set(scale.x, scale.y, scale.z);
 
@@ -66,7 +80,7 @@ const ThreeScene = () => {
   }, [rotation, scale, position, color]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
       {showControls && <ControlPanel setShowControls={setShowControls} />}
 
       {!showControls && (
@@ -77,7 +91,7 @@ const ThreeScene = () => {
           Open Controls
         </Button>
       )}
-      <div ref={mountRef} />
+      <div ref={mountRef} style={{ width: '100%', height: '100%' }} />
     </div>
   );
 };
